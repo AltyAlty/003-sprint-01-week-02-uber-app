@@ -10,5 +10,6 @@ testingRouter
   /*DELETE-запрос для очистки БД с данными по водителям для целей тестирования.*/
   .delete('/all-data', (req: Request, res: Response) => {
     db.drivers = [];
+    db.rides = [];
     res.sendStatus(HttpStatus.NoContent);
   });

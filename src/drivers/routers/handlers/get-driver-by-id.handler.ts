@@ -27,12 +27,7 @@ export const getDriverByIdHandler = (
 
   /*Если водитель не был найден, то сообщаем об этом клиенту.*/
   if (!driver) {
-    res
-      .status(HttpStatus.NotFound)
-      .send(
-        createErrorMessages([{ field: 'id', message: 'Driver was not found' }]),
-      );
-
+    res.status(HttpStatus.NotFound).send(createErrorMessages([{ field: 'id', message: 'Driver was not found' }]));
     return;
   }
 

@@ -23,11 +23,7 @@ export const driversRepository = {
   /*Создаем метод "update()" для изменения данных водителя по id в БД.*/
   update(id: number, dto: DriverInputDto): void {
     const driver = this.findById(id);
-
-    if (!driver) {
-      throw new Error('Driver does not exist');
-    }
-
+    if (!driver) throw new Error('Driver does not exist');
     driver.name = dto.name;
     driver.phoneNumber = dto.phoneNumber;
     driver.email = dto.email;
@@ -37,18 +33,13 @@ export const driversRepository = {
     driver.vehicleLicensePlate = dto.vehicleLicensePlate;
     driver.vehicleDescription = dto.vehicleDescription;
     driver.vehicleFeatures = dto.vehicleFeatures;
-
     return;
   },
 
   /*Создаем метод "delete()" для удаления водителя по id в БД.*/
   delete(id: number): void {
     const index = db.drivers.findIndex((d) => d.id === id);
-
-    if (index === -1) {
-      throw new Error('Driver does not exist');
-    }
-
+    if (index === -1) throw new Error('Driver does not exist');
     db.drivers.splice(index, 1);
     return;
   },

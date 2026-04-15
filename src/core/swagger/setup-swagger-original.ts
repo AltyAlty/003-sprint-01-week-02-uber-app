@@ -10,7 +10,7 @@ const swaggerOptions = {
     info: {
       title: 'Uber API',
       version: '1.0.0',
-      description: 'uber API',
+      description: 'Uber API',
     },
   },
 

@@ -8,10 +8,7 @@ import { db } from '../../../db/in-memory.db';
 import { driversRepository } from '../../repositories/drivers.repository';
 
 /*Создаем функцию-обработчика "createDriverHandler()" для POST-запросов для добавления нового водителя.*/
-export const createDriverHandler = (
-  req: Request<{}, {}, DriverInputDto>,
-  res: Response,
-) => {
+export const createDriverHandler = (req: Request<{}, {}, DriverInputDto>, res: Response) => {
   /*Проводим валидацию DTO для входных данных по новому водителю. Сейчас не используется, так как используем валидацию
   при помощи библиотеки express-validator.*/
   // const errors = vehicleInputDtoValidation(req.body);

@@ -1,7 +1,4 @@
-import {
-  ADMIN_PASSWORD,
-  ADMIN_USERNAME,
-} from '../../src/auth/middlewares/super-admin.guard-middleware';
+import { ADMIN_PASSWORD, ADMIN_USERNAME } from '../../src/auth/middlewares/super-admin.guard-middleware';
 
 /*Создаем функцию "generateBasicAuthToken()" для генерации токена для Basic авторизации для целей тестирования.*/
 export function generateBasicAuthToken() {

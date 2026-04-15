@@ -11,48 +11,19 @@ import { superAdminGuardMiddleware } from '../../auth/middlewares/super-admin.gu
 
 /*Создаем роутер из Express для работы с данными по водителям.*/
 export const driversRouter = Router({});
-
 /*Таким образом можно применить какой-то middleware ко всем маршрутам.*/
-// driversRouter.use(superAdminGuardMiddleware);
+driversRouter.use(superAdminGuardMiddleware);
 
 /*Конфигурируем роутер "driversRouter".*/
 driversRouter
   /*GET-запрос для получения данных по всем водителям.*/
   .get('', getDriverListHandler)
-
   /*GET-запрос для поиска водителя по id при помощи URI-параметров. При помощи ":" Express позволяет указывать
   переменные в пути. Такие переменные доступны через объект "req.params".*/
-  .get(
-    '/:id',
-    idValidation,
-    inputValidationResultMiddleware,
-    getDriverByIdHandler,
-  )
-
+  .get('/:id', idValidation, inputValidationResultMiddleware, getDriverByIdHandler)
   /*POST-запрос для добавления нового водителя.*/
-  .post(
-    '',
-    superAdminGuardMiddleware,
-    driverInputDtoValidation,
-    inputValidationResultMiddleware,
-    createDriverHandler,
-  )
-
+  .post('', driverInputDtoValidation, inputValidationResultMiddleware, createDriverHandler)
   /*PUT-запрос для изменения данных водителя по id при помощи URI-параметров.*/
-  .put(
-    '/:id',
-    idValidation,
-    superAdminGuardMiddleware,
-    driverInputDtoValidation,
-    inputValidationResultMiddleware,
-    updateDriverHandler,
-  )
-
+  .put('/:id', idValidation, driverInputDtoValidation, inputValidationResultMiddleware, updateDriverHandler)
   /*DELETE-запрос для удаления водителя по id при помощи URI-параметров.*/
-  .delete(
-    '/:id',
-    superAdminGuardMiddleware,
-    idValidation,
-    inputValidationResultMiddleware,
-    deleteDriverHandler,
-  );
+  .delete('/:id', idValidation, inputValidationResultMiddleware, deleteDriverHandler);

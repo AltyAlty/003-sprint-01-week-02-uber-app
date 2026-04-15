@@ -5,11 +5,7 @@ import { HttpStatus } from '../../core/types/http-statuses';
 export const ADMIN_USERNAME = process.env.ADMIN_USERNAME || 'admin';
 export const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'qwerty';
 
-export const superAdminGuardMiddleware = (
-  req: Request,
-  res: Response,
-  next: NextFunction,
-) => {
+export const superAdminGuardMiddleware = (req: Request, res: Response, next: NextFunction) => {
   /*Получаем заголовок "Authorization" из запроса. Должно быть вида "Basic <base64-encoded-credentials>"*/
   const auth = req.headers['authorization'] as string;
 
@@ -30,7 +26,6 @@ export const superAdminGuardMiddleware = (
 
   /*Расшифровываем токен из формата base64 в обычную строку.*/
   const credentials = Buffer.from(token, 'base64').toString('utf-8');
-
   /*Разделяем расшифрованный токен на логин и пароль.*/
   const [username, password] = credentials.split(':');
 

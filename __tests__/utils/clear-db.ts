@@ -5,8 +5,6 @@ import { TESTING_PATH } from '../../src/core/paths/path';
 
 /*Создаем функцию "clearDb()" для очистки БД перед запуском тестов.*/
 export async function clearDb(app: Express) {
-  await request(app)
-    .delete(`${TESTING_PATH}/all-data`)
-    .expect(HttpStatus.NoContent);
+  await request(app).delete(`${TESTING_PATH}/all-data`).expect(HttpStatus.NoContent);
   return;
 }
