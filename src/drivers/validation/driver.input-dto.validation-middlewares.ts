@@ -98,9 +98,7 @@ const vehicleFeaturesValidation = body('vehicleFeatures')
 
       vehicleFeatures.forEach((feature) => {
         if (!validFeatures.includes(feature)) {
-          throw new Error(
-            'vehicleFeatures should contain values of VehicleFeature',
-          );
+          throw new Error('vehicleFeatures should contain values of VehicleFeature');
         }
       });
     }

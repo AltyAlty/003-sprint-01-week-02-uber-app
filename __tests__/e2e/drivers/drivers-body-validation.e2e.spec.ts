@@ -11,7 +11,6 @@ import { getDriverDto } from '../../utils/drivers/get-driver-dto';
 import { createDriver } from '../../utils/drivers/create-driver';
 import { getDriverById } from '../../utils/drivers/get-driver-by-id';
 
-/*Описываем тестовый набор.*/
 describe('Drivers API body validation check', () => {
   const app = express();
   setupApp(app);

@@ -6,12 +6,7 @@ import swaggerUi from 'swagger-ui-express';
 const swaggerOptions = {
   definition: {
     openapi: '3.0.0',
-
-    info: {
-      title: 'Uber API',
-      version: '1.0.0',
-      description: 'Uber API',
-    },
+    info: { title: 'Uber API', version: '1.0.0', description: 'Uber API' },
   },
 
   /*Указываем откуда брать документацию для Swagger. В данном случае все файлы .yml в папке "src".*/

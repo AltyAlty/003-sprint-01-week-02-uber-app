@@ -9,3 +9,5 @@ tags:
     description: API for clearing the database
   - name: Drivers
     description: API for managing drivers
+  - name: Rides
+    description: API for managing rides
