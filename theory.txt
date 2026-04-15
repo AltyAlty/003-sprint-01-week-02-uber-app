@@ -21,7 +21,7 @@ pnpm add -D typescript @types/express jest ts-jest @types/jest @types/node super
 
 Файл "package.json": настройка полей "main" и "scripts".
 Файл "tsconfig.json": ручная настройка.
-Файл "jest.config.json" создан вручную.
+Файл "jest.config.json" создан вручную. Запускаются тесты только из папки "__tests__/e2e/".
 Файл "tsconfig.test.json" создан вручную. Содержит отдельные правила для тестов.
 1. Берет все базовые настройки из файла "tsconfig.json".
 2. TypeScript проверяет типы, но не генерирует файлы .js.
