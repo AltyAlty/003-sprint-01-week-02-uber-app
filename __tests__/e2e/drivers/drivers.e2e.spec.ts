@@ -34,7 +34,7 @@ describe('Driver API', () => {
   });
 
   /*Описываем тест, проверяющий добавление нового водителя в БД.*/
-  it('should create driver; POST /api/drivers', async () => {
+  it('should create a driver; POST /api/drivers', async () => {
     const newDriver: DriverInputDto = {
       ...testDriverData,
       name: 'Feodor',
@@ -47,7 +47,7 @@ describe('Driver API', () => {
   });
 
   /*Описываем тест, проверяющий получение данных по всем водителями из БД.*/
-  it('should return drivers list; GET /api/drivers', async () => {
+  it('should return a list of drivers; GET /api/drivers', async () => {
     await request(app)
       .post(DRIVERS_PATH)
       .send({ ...testDriverData, name: 'Another Driver' })
@@ -67,7 +67,7 @@ describe('Driver API', () => {
   });
 
   /*Описываем тест, проверяющий получение данных по водителю по id из БД.*/
-  it('should return driver by id; GET /api/drivers/:id', async () => {
+  it('should return a driver by id; GET /api/drivers/:id', async () => {
     const createResponse = await request(app)
       .post(DRIVERS_PATH)
       .send({ ...testDriverData, name: 'Another Driver3' })
@@ -85,7 +85,7 @@ describe('Driver API', () => {
   });
 
   /*Описываем тест, проверяющий изменение данных по водителю по id в БД.*/
-  it('should update driver; PUT /api/drivers/:id', async () => {
+  it('should update a driver; PUT /api/drivers/:id', async () => {
     const createResponse = await request(app)
       .post(DRIVERS_PATH)
       .send({ ...testDriverData, name: 'Another Driver4' })
@@ -120,7 +120,7 @@ describe('Driver API', () => {
   });
 
   /*Описываем тест, проверяющий удаление водителя по id в БД.*/
-  it('DELETE /api/drivers/:id and check after NOT FOUND', async () => {
+  it('should delete a video by id; DELETE /api/drivers/:id', async () => {
     const {
       body: { id: createdDriverId },
     } = await request(app)

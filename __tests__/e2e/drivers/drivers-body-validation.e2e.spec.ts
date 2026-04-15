@@ -30,7 +30,7 @@ describe('Driver API body validation check', () => {
   });
 
   /*Описываем тест, проверяющий отказ в добавлении водителя с непрошедшими валидацию данными.*/
-  it('should not create driver when incorrect body passed; POST /api/drivers', async () => {
+  it('should not create a driver when incorrect body passed; POST /api/drivers', async () => {
     const invalidDataSet1 = await request(app)
       .post(DRIVERS_PATH)
       .send({
@@ -72,7 +72,7 @@ describe('Driver API body validation check', () => {
   });
 
   /*Описываем тест, проверяющий отказ в изменении данных водителя с непрошедшими валидацию данными.*/
-  it('should not update driver when incorrect data passed; PUT /api/drivers/:id', async () => {
+  it('should not update a driver when incorrect data passed; PUT /api/drivers/:id', async () => {
     const {
       body: { id: createdDriverId },
     } = await request(app)
@@ -128,7 +128,7 @@ describe('Driver API body validation check', () => {
   });
 
   /*Описываем тест, проверяющий отказ в изменении данных водителя с непрошедшими валидацию данными о фичах машины.*/
-  it('should not update driver when incorrect features passed; PUT /api/drivers/:id', async () => {
+  it('should not update a driver when incorrect features passed; PUT /api/drivers/:id', async () => {
     const {
       body: { id: createdDriverId },
     } = await request(app)

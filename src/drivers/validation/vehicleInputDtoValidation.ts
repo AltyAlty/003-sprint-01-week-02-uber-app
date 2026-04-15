@@ -102,7 +102,7 @@ export const vehicleInputDtoValidation = (
   if (!Array.isArray(data.vehicleFeatures)) {
     errors.push({
       field: 'vehicleFeatures',
-      message: 'vehicleFeatures must be array',
+      message: 'vehicleFeatures must be an array',
     });
   } else if (data.vehicleFeatures.length) {
     const existingFeatures = Object.values(VehicleFeature);

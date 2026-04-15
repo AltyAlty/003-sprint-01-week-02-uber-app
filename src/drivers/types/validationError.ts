@@ -1,4 +1,4 @@
-/*Тип для сообщения при ошибке валидации.*/
+/*Тип для сообщения об ошибке валидации.*/
 export type ValidationError = {
   field: string;
   message: string;

@@ -5,7 +5,9 @@ import { HttpStatus } from '../../../core/types/http-statuses';
 import { createErrorMessages } from '../../../core/utils/error.utils';
 import { Driver } from '../../types/driver';
 import { db } from '../../../db/in-memory.db';
+import { driversRepository } from '../../repositories/drivers.repository';
 
+/*Создаем функцию-обработчика "createDriverHandler()" для POST-запросов для добавления нового водителя.*/
 export const createDriverHandler = (
   req: Request<{}, {}, DriverInputDto>,
   res: Response,
@@ -35,7 +37,8 @@ export const createDriverHandler = (
     createdAt: new Date(),
   };
 
-  /*Добавляем нового водителя в БД и сообщаем об этом клиенту.*/
-  db.drivers.push(newDriver);
+  /*Просим репозиторий "driversRepository" добавить нового водителя в БД.*/
+  driversRepository.create(newDriver);
+  /*Сообщаем об успешном добавлении нового водителя клиенту.*/
   res.status(HttpStatus.Created).send(newDriver);
 };

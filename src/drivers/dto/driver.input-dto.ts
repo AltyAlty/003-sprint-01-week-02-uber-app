@@ -1,6 +1,6 @@
 import { VehicleFeature } from '../types/driver';
 
-/*DTO для входных данных по водителям.*/
+/*DTO для входных данных по водителю.*/
 export type DriverInputDto = {
   name: string;
   phoneNumber: string;

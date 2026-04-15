@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
 import { Driver } from '../../types/driver';
-import { db } from '../../../db/in-memory.db';
 import { HttpStatus } from '../../../core/types/http-statuses';
 import { createErrorMessages } from '../../../core/utils/error.utils';
+import { driversRepository } from '../../repositories/drivers.repository';
 
 /*"Request" из Express используется для типизации параметра "req", а "Response" из Express используется для типизации
 параметра "res".
@@ -12,21 +12,25 @@ import { createErrorMessages } from '../../../core/utils/error.utils';
 1. На первом месте в типе идут URI-параметры.
 2. На втором месте в типе идет "ResBody". Относится к параметру "res" внутри запроса, то есть что будет возвращено.
 3. На третьем месте в типе идет "ReqBody". Это то, что приходит в body в запросе.
-4. На четвертом месте в типе идут Query-параметры.*/
+4. На четвертом месте в типе идут Query-параметры.
+
+Создаем функцию-обработчика "getDriverByIdHandler()" для GET-запросов для поиска водителя по id при помощи
+URI-параметров.*/
 export const getDriverByIdHandler = (
   req: Request<{ id: string }, Driver, {}, {}>,
   res: Response<Driver | null | unknown>,
 ) => {
-  /*Ищем водителя в БД. Метод "parseInt()" возвращает целое число на основе параметра.*/
+  /*Метод "parseInt()" возвращает целое число на основе параметра.*/
   const id = parseInt(req.params.id);
-  const driver = db.drivers.find((d) => d.id === id);
+  /*Просим репозиторий "driversRepository" найти данные по водителю в БД.*/
+  const driver = driversRepository.findById(id);
 
   /*Если водитель не был найден, то сообщаем об этом клиенту.*/
   if (!driver) {
     res
       .status(HttpStatus.NotFound)
       .send(
-        createErrorMessages([{ field: 'id', message: 'Driver not found' }]),
+        createErrorMessages([{ field: 'id', message: 'Driver was not found' }]),
       );
 
     return;
