@@ -12,14 +12,16 @@ export const updateDriverHandler = (
   res: Response,
 ) => {
   const id = parseInt(req.params.id);
-  /*Проводим валидацию DTO для входных данных по водителю, которого нужно изменить.*/
-  const errors = vehicleInputDtoValidation(req.body);
+  /*Проводим валидацию DTO для входных данных по водителю, которого нужно изменить. Сейчас не используется, так как
+  используем валидацию при помощи библиотеки express-validator.*/
+  // const errors = vehicleInputDtoValidation(req.body);
 
-  /*Если были ошибки валидации, то сообщаем об этом клиенту.*/
-  if (errors.length > 0) {
-    res.status(HttpStatus.BadRequest).send(createErrorMessages(errors));
-    return;
-  }
+  /*Если были ошибки валидации, то сообщаем об этом клиенту. Сейчас не используется, так как используем валидацию при
+  помощи библиотеки express-validator.*/
+  // if (errors.length > 0) {
+  //   res.status(HttpStatus.BadRequest).send(createErrorMessages(errors));
+  //   return;
+  // }
 
   /*Просим репозиторий "driversRepository" найти данные по водителю в БД.*/
   const driver = driversRepository.findById(id);

@@ -8,6 +8,7 @@ pnpm add -D typescript @types/express jest ts-jest @types/jest @types/node super
 Инициализация файла "tsconfig.json": pnpm tsc --init
 Установка swagger-jsdoc и swagger-ui-express: pnpm add swagger-jsdoc swagger-ui-express
 Установка типов для swagger-jsdoc и swagger-ui-express: pnpm add -D @types/swagger-jsdoc @types/swagger-ui-express
+Установка express-validator: pnpm add express-validator
 
 Скрипты:
 1. pnpm watch: компиляция файлов TypeScript из папки "src" в папку "dist" в режиме наблюдения (-w).
@@ -127,6 +128,11 @@ Data Transfer Object - это объект, определяющий форму 
 2. Легкость тестирования: репозиторий можно тестировать независимо от остальных частей приложения.
 3. Гибкость: если структура или тип БД изменится, все изменения нужно будет сделать только в репозитории, не затрагивая
 другие части приложения.
+
+Middlewares в Express.js могут получать три параметра:
+1. Объект запроса.
+2. Объект ответа.
+3. Функция "next()" для передачи управления следующему обработчику.
 
 Структура приложения:
 Папка "core" - общие типы для всего приложения.

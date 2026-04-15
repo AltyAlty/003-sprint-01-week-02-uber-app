@@ -12,14 +12,16 @@ export const createDriverHandler = (
   req: Request<{}, {}, DriverInputDto>,
   res: Response,
 ) => {
-  /*Проводим валидацию DTO для входных данных по новому водителю.*/
-  const errors = vehicleInputDtoValidation(req.body);
+  /*Проводим валидацию DTO для входных данных по новому водителю. Сейчас не используется, так как используем валидацию
+  при помощи библиотеки express-validator.*/
+  // const errors = vehicleInputDtoValidation(req.body);
 
-  /*Если были ошибки валидации, то сообщаем об этом клиенту.*/
-  if (errors.length > 0) {
-    res.status(HttpStatus.BadRequest).send(createErrorMessages(errors));
-    return;
-  }
+  /*Если были ошибки валидации, то сообщаем об этом клиенту. Сейчас не используется, так как используем валидацию при
+  помощи библиотеки express-validator.*/
+  // if (errors.length > 0) {
+  //   res.status(HttpStatus.BadRequest).send(createErrorMessages(errors));
+  //   return;
+  // }
 
   /*Если ошибок валидации не было, то создаем объект с данными нового водителя.*/
   const newDriver: Driver = {
