@@ -4,7 +4,9 @@ import { setupApp } from '../../../src/setup-app';
 import { VehicleFeature } from '../../../src/drivers/types/driver';
 import { DriverInputDto } from '../../../src/drivers/dto/driver.input-dto';
 import { HttpStatus } from '../../../src/core/types/http-statuses';
-import { DRIVERS_PATH, TESTING_PATH } from '../../../src/core/paths/path';
+import { DRIVERS_PATH } from '../../../src/core/paths/path';
+import { generateBasicAuthToken } from '../../utils/generate-admin-auth-token';
+import { clearDb } from '../../utils/clear-db';
 
 /*Описываем тестовый набор.*/
 describe('Driver API', () => {
@@ -12,6 +14,8 @@ describe('Driver API', () => {
   const app = express();
   /*Настраиваем экземпляр приложения Express при помощи функции "setupApp()".*/
   setupApp(app);
+  /*Генерируем токен для Basic авторизации.*/
+  const adminToken = generateBasicAuthToken();
 
   /*Подготавливаем тестовые данные.*/
   const testDriverData: DriverInputDto = {
@@ -28,9 +32,7 @@ describe('Driver API', () => {
 
   /*Перед запуском тестов, очищаем БД с данными по водителям.*/
   beforeAll(async () => {
-    await request(app)
-      .delete(`${TESTING_PATH}/all-data`)
-      .expect(HttpStatus.NoContent);
+    await clearDb(app);
   });
 
   /*Описываем тест, проверяющий добавление нового водителя в БД.*/
@@ -42,6 +44,7 @@ describe('Driver API', () => {
 
     await request(app)
       .post(DRIVERS_PATH)
+      .set('Authorization', adminToken)
       .send(newDriver)
       .expect(HttpStatus.Created);
   });
@@ -50,16 +53,19 @@ describe('Driver API', () => {
   it('should return a list of drivers; GET /api/drivers', async () => {
     await request(app)
       .post(DRIVERS_PATH)
+      .set('Authorization', adminToken)
       .send({ ...testDriverData, name: 'Another Driver' })
       .expect(HttpStatus.Created);
 
     await request(app)
       .post(DRIVERS_PATH)
+      .set('Authorization', adminToken)
       .send({ ...testDriverData, name: 'Another Driver2' })
       .expect(HttpStatus.Created);
 
     const driverListResponse = await request(app)
       .get(DRIVERS_PATH)
+      .set('Authorization', adminToken)
       .expect(HttpStatus.Ok);
 
     expect(driverListResponse.body).toBeInstanceOf(Array);
@@ -70,11 +76,13 @@ describe('Driver API', () => {
   it('should return a driver by id; GET /api/drivers/:id', async () => {
     const createResponse = await request(app)
       .post(DRIVERS_PATH)
+      .set('Authorization', adminToken)
       .send({ ...testDriverData, name: 'Another Driver3' })
       .expect(HttpStatus.Created);
 
     const getResponse = await request(app)
       .get(`${DRIVERS_PATH}/${createResponse.body.id}`)
+      .set('Authorization', adminToken)
       .expect(HttpStatus.Ok);
 
     expect(getResponse.body).toEqual({
@@ -88,6 +96,7 @@ describe('Driver API', () => {
   it('should update a driver; PUT /api/drivers/:id', async () => {
     const createResponse = await request(app)
       .post(DRIVERS_PATH)
+      .set('Authorization', adminToken)
       .send({ ...testDriverData, name: 'Another Driver4' })
       .expect(HttpStatus.Created);
 
@@ -105,12 +114,13 @@ describe('Driver API', () => {
 
     await request(app)
       .put(`${DRIVERS_PATH}/${createResponse.body.id}`)
+      .set('Authorization', adminToken)
       .send(driverUpdateData)
       .expect(HttpStatus.NoContent);
 
-    const driverResponse = await request(app).get(
-      `${DRIVERS_PATH}/${createResponse.body.id}`,
-    );
+    const driverResponse = await request(app)
+      .get(`${DRIVERS_PATH}/${createResponse.body.id}`)
+      .set('Authorization', adminToken);
 
     expect(driverResponse.body).toEqual({
       ...driverUpdateData,
@@ -125,16 +135,18 @@ describe('Driver API', () => {
       body: { id: createdDriverId },
     } = await request(app)
       .post(DRIVERS_PATH)
+      .set('Authorization', adminToken)
       .send({ ...testDriverData, name: 'Another Driver5' })
       .expect(HttpStatus.Created);
 
     await request(app)
       .delete(`${DRIVERS_PATH}/${createdDriverId}`)
+      .set('Authorization', adminToken)
       .expect(HttpStatus.NoContent);
 
-    const driverResponse = await request(app).get(
-      `${DRIVERS_PATH}/${createdDriverId}`,
-    );
+    const driverResponse = await request(app)
+      .get(`${DRIVERS_PATH}/${createdDriverId}`)
+      .set('Authorization', adminToken);
 
     expect(driverResponse.status).toBe(HttpStatus.NotFound);
   });

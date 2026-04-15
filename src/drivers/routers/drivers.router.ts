@@ -7,9 +7,13 @@ import { deleteDriverHandler } from './handlers/delete-driver.handler';
 import { idValidation } from '../../core/middlewares/validation/params-id.validation-middleware';
 import { inputValidationResultMiddleware } from '../../core/middlewares/validation/input-validtion-result.middleware';
 import { driverInputDtoValidation } from '../validation/driver.input-dto.validation-middlewares';
+import { superAdminGuardMiddleware } from '../../auth/middlewares/super-admin.guard-middleware';
 
 /*Создаем роутер из Express для работы с данными по водителям.*/
 export const driversRouter = Router({});
+
+/*Таким образом можно применить какой-то middleware ко всем маршрутам.*/
+// driversRouter.use(superAdminGuardMiddleware);
 
 /*Конфигурируем роутер "driversRouter".*/
 driversRouter
@@ -28,6 +32,7 @@ driversRouter
   /*POST-запрос для добавления нового водителя.*/
   .post(
     '',
+    superAdminGuardMiddleware,
     driverInputDtoValidation,
     inputValidationResultMiddleware,
     createDriverHandler,
@@ -37,6 +42,7 @@ driversRouter
   .put(
     '/:id',
     idValidation,
+    superAdminGuardMiddleware,
     driverInputDtoValidation,
     inputValidationResultMiddleware,
     updateDriverHandler,
@@ -45,6 +51,7 @@ driversRouter
   /*DELETE-запрос для удаления водителя по id при помощи URI-параметров.*/
   .delete(
     '/:id',
+    superAdminGuardMiddleware,
     idValidation,
     inputValidationResultMiddleware,
     deleteDriverHandler,
