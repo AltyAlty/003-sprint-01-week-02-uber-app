@@ -5,7 +5,7 @@ import { HttpStatus } from '../../../src/core/types/http-statuses';
 import { generateBasicAuthToken } from '../generate-admin-auth-token';
 import { RIDES_PATH } from '../../../src/core/paths/path';
 
-/*Создаем функцию "getRideById()", получающую данные о поездке по id и возвращающую их, для целей тестирования.*/
+/*Создаем функцию "getRideById()", получающую данные о поездке по ID и возвращающую их, для целей тестирования.*/
 export async function getRideById(app: Express, rideId: number): Promise<Ride> {
   const getResponse = await request(app)
     .get(`${RIDES_PATH}/${rideId}`)

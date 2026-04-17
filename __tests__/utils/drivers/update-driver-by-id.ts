@@ -6,8 +6,8 @@ import { getDriverDto } from './get-driver-dto';
 import { generateBasicAuthToken } from '../generate-admin-auth-token';
 import { DRIVERS_PATH } from '../../../src/core/paths/path';
 
-/*Создаем функцию "updateDriver()", изменяющую данные водителя и возвращающую их, для целей тестирования.*/
-export async function updateDriver(app: Express, driverId: number, driverDto?: DriverInputDto): Promise<void> {
+/*Создаем функцию "updateDriver()", изменяющую данные водителя по ID и возвращающую их, для целей тестирования.*/
+export async function updateDriverById(app: Express, driverId: number, driverDto?: DriverInputDto): Promise<void> {
   const defaultDriverData: DriverInputDto = getDriverDto();
   const testDriverData = { ...defaultDriverData, ...driverDto };
 

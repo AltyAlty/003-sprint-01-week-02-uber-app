@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { DriverInputDto } from '../../dto/driver.input-dto';
-import { vehicleInputDtoValidation } from '../../validation/vehicleInputDtoValidation';
+import { driverInputDtoValidation } from '../../validation/driverInputDtoValidation';
 import { HttpStatus } from '../../../core/types/http-statuses';
 import { createErrorMessages } from '../../../core/utils/error.utils';
 import { Driver } from '../../types/driver';
@@ -11,7 +11,7 @@ import { driversRepository } from '../../repositories/drivers.repository';
 export const createDriverHandler = (req: Request<{}, {}, DriverInputDto>, res: Response) => {
   /*Проводим валидацию DTO для входных данных по новому водителю. Сейчас не используется, так как используем валидацию
   при помощи библиотеки express-validator.*/
-  // const errors = vehicleInputDtoValidation(req.body);
+  // const errors = driverInputDtoValidation(req.body);
 
   /*Если были ошибки валидации, то сообщаем об этом клиенту. Сейчас не используется, так как используем валидацию при
   помощи библиотеки express-validator.*/

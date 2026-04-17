@@ -20,7 +20,7 @@ export const driversRepository = {
     return newDriver;
   },
 
-  /*Создаем метод "update()" для изменения данных водителя по id в БД.*/
+  /*Создаем метод "update()" для изменения данных водителя по ID в БД.*/
   update(id: number, dto: DriverInputDto): void {
     const driver = this.findById(id);
     if (!driver) throw new Error('Driver does not exist');
@@ -36,7 +36,7 @@ export const driversRepository = {
     return;
   },
 
-  /*Создаем метод "delete()" для удаления водителя по id в БД.*/
+  /*Создаем метод "delete()" для удаления водителя по ID в БД.*/
   delete(id: number): void {
     const index = db.drivers.findIndex((d) => d.id === id);
     if (index === -1) throw new Error('Driver does not exist');

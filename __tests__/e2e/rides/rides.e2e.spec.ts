@@ -13,7 +13,6 @@ describe('Rides API', () => {
   setupApp(app);
   const adminToken = generateBasicAuthToken();
   beforeAll(async () => await clearDb(app));
-
   it('✅ should create a ride; POST /api/rides', async () => await createRide(app));
 
   it('✅ should return a list of rides; GET /api/rides', async () => {
@@ -23,7 +22,7 @@ describe('Rides API', () => {
     expect(rideListResponse.body).toHaveLength(2);
   });
 
-  it('✅ should return a ride by id; GET /api/rides/:id', async () => {
+  it('✅ should return a ride by ID; GET /api/rides/:id', async () => {
     const createdRide = await createRide(app);
     const getRide = await getRideById(app, createdRide.id);
 

@@ -14,7 +14,7 @@ import { driversRepository } from '../../repositories/drivers.repository';
 3. На третьем месте в типе идет "ReqBody". Это то, что приходит в body в запросе.
 4. На четвертом месте в типе идут Query-параметры.
 
-Создаем функцию-обработчика "getDriverByIdHandler()" для GET-запросов для поиска водителя по id при помощи
+Создаем функцию-обработчика "getDriverByIdHandler()" для GET-запросов для поиска водителя по ID при помощи
 URI-параметров.*/
 export const getDriverByIdHandler = (
   req: Request<{ id: string }, Driver, {}, {}>,

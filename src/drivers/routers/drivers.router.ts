@@ -5,7 +5,7 @@ import { createDriverHandler } from './handlers/create-driver.handler';
 import { updateDriverHandler } from './handlers/update-driver.handler';
 import { deleteDriverHandler } from './handlers/delete-driver.handler';
 import { idValidation } from '../../core/middlewares/validation/params-id.validation-middleware';
-import { inputValidationResultMiddleware } from '../../core/middlewares/validation/input-validtion-result.middleware';
+import { inputValidationResultMiddleware } from '../../core/middlewares/validation/input-validation-result.middleware';
 import { driverInputDtoValidation } from '../validation/driver.input-dto.validation-middlewares';
 import { superAdminGuardMiddleware } from '../../auth/middlewares/super-admin.guard-middleware';
 

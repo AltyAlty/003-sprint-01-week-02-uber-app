@@ -3,7 +3,7 @@ import { HttpStatus } from '../../../core/types/http-statuses';
 import { createErrorMessages } from '../../../core/utils/error.utils';
 import { driversRepository } from '../../repositories/drivers.repository';
 
-/*Создаем функцию-обработчика "deleteDriverHandler()" для DELETE-запросов для удаления водителя по id при помощи
+/*Создаем функцию-обработчика "deleteDriverHandler()" для DELETE-запросов для удаления водителя по ID при помощи
 URI-параметров.*/
 export const deleteDriverHandler = (req: Request<{ id: string }, {}, {}, {}>, res: Response) => {
   const id = parseInt(req.params.id);

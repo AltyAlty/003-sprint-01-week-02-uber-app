@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { ridesRepository } from '../../repositories/rides.repository';
 import { HttpStatus } from '../../../core/types/http-statuses';
-import { createErrorMessages } from '../../../core/middlewares/validation/input-validtion-result.middleware';
+import { createErrorMessages } from '../../../core/middlewares/validation/input-validation-result.middleware';
 import { Ride } from '../../types/ride';
 
 export function getRideByIdHandler(req: Request<{ id: string }, Ride, {}, {}>, res: Response<Ride | null | unknown>) {

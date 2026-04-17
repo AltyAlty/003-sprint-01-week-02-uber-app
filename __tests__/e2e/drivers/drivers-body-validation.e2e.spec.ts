@@ -65,7 +65,7 @@ describe('Drivers API body validation check', () => {
   });
 
   /*Описываем тест, проверяющий отказ в изменении данных водителя с непрошедшими валидацию данными.*/
-  it('❌ should not update a driver when incorrect data passed; PUT /api/drivers/:id', async () => {
+  it('❌ should not update a driver when incorrect body passed; PUT /api/drivers/:id', async () => {
     const createdDriver = await createDriver(app, correctTestDriverData);
 
     const invalidDataSet1 = await request(app)

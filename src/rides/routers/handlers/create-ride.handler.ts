@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { RideInputDto } from '../../dto/ride-input.dto';
 import { driversRepository } from '../../../drivers/repositories/drivers.repository';
 import { HttpStatus } from '../../../core/types/http-statuses';
-import { createErrorMessages } from '../../../core/middlewares/validation/input-validtion-result.middleware';
+import { createErrorMessages } from '../../../core/middlewares/validation/input-validation-result.middleware';
 import { ridesRepository } from '../../repositories/rides.repository';
 import { Ride } from '../../types/ride';
 import { db } from '../../../db/in-memory.db';

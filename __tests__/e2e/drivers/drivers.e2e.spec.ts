@@ -10,7 +10,7 @@ import { clearDb } from '../../utils/clear-db';
 import { getDriverDto } from '../../utils/drivers/get-driver-dto';
 import { createDriver } from '../../utils/drivers/create-driver';
 import { getDriverById } from '../../utils/drivers/get-driver-by-id';
-import { updateDriver } from '../../utils/drivers/update-driver';
+import { updateDriverById } from '../../utils/drivers/update-driver-by-id';
 
 /*Описываем тестовый набор.*/
 describe('Drivers API', () => {
@@ -48,8 +48,8 @@ describe('Drivers API', () => {
     expect(driverListResponse.body.length).toBeGreaterThanOrEqual(2);
   });
 
-  /*Описываем тест, проверяющий получение данных по водителю по id из БД.*/
-  it('✅ should return a driver by id; GET /api/drivers/:id', async () => {
+  /*Описываем тест, проверяющий получение данных по водителю по ID из БД.*/
+  it('✅ should return a driver by ID; GET /api/drivers/:id', async () => {
     const createdDriver = await createDriver(app);
     const driver = await getDriverById(app, createdDriver.id);
 
@@ -60,8 +60,8 @@ describe('Drivers API', () => {
     });
   });
 
-  /*Описываем тест, проверяющий изменение данных по водителю по id в БД.*/
-  it('✅ should update a driver; PUT /api/drivers/:id', async () => {
+  /*Описываем тест, проверяющий изменение данных по водителю по ID в БД.*/
+  it('✅ should update a driver by ID; PUT /api/drivers/:id', async () => {
     const createdDriver = await createDriver(app);
 
     const driverUpdateData: DriverInputDto = {
@@ -76,7 +76,7 @@ describe('Drivers API', () => {
       vehicleFeatures: [VehicleFeature.ChildSeat],
     };
 
-    await updateDriver(app, createdDriver.id, driverUpdateData);
+    await updateDriverById(app, createdDriver.id, driverUpdateData);
     const driverResponse = await getDriverById(app, createdDriver.id);
 
     expect(driverResponse).toEqual({
@@ -86,8 +86,8 @@ describe('Drivers API', () => {
     });
   });
 
-  /*Описываем тест, проверяющий удаление водителя по id в БД.*/
-  it('✅ should delete a driver by id; DELETE /api/drivers/:id', async () => {
+  /*Описываем тест, проверяющий удаление водителя по ID в БД.*/
+  it('✅ should delete a driver by ID; DELETE /api/drivers/:id', async () => {
     const createdDriver = await createDriver(app);
 
     await request(app)

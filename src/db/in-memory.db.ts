@@ -1,7 +1,7 @@
 import { Driver, VehicleFeature } from '../drivers/types/driver';
 import { Currency, Ride } from '../rides/types/ride';
 
-/*Моковая БД с данными по водителям и поездкам.*/
+/*Моковая БД.*/
 export const db = {
   drivers: <Driver[]>[
     {

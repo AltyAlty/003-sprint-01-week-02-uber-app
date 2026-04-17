@@ -1,7 +1,7 @@
-/*Импортируем метод "param()" из библиотеки express-validator, чтобы проверять id.*/
+/*Импортируем метод "param()" из библиотеки express-validator, чтобы проверять ID.*/
 import { param } from 'express-validator';
 
-/*Создаем middleware "idValidation". Этот middleware проверяет, что id:
+/*Создаем middleware "idValidation", проверяющий, что ID:
 1. Существует в запросе.
 2. Является строкой.
 3. Не является пустым.
