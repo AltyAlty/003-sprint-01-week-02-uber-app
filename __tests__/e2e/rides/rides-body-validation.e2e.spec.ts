@@ -14,7 +14,7 @@ describe('Rides API body validation check', () => {
   beforeAll(async () => await clearDb(app));
 
   it(`❌ should not create a ride when incorrect body passed; POST /api/rides'`, async () => {
-    await request(app).post('/api/rides').send({}).expect(HttpStatus.Unauthorized);
+    await request(app).post(RIDES_PATH).send({}).expect(HttpStatus.Unauthorized);
 
     const invalidDataSet1 = await request(app)
       .post(RIDES_PATH)

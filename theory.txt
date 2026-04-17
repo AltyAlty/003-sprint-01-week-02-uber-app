@@ -64,7 +64,8 @@ Automatic ESLint configuration - ON, Run eslint --fix on save - ON.
 5. Создать вручную файлы .yml, описывающие документацию Swagger:
 5.1 Файл "/src/core/swagger/openapi.swagger.yml".
 5.2 Файл "/src/drivers/docs/drivers.swagger.yml".
-5.3 Файл "/src/testing/docs/testing.swagger.yml".
+5.3 Файл "/src/rides/docs/rides.swagger.yml".
+5.4 Файл "/src/testing/docs/testing.swagger.yml".
 
 Настройка деплоя приложения на vercel.com:
 1. Создать файл "vercel.json".
@@ -91,7 +92,7 @@ Automatic ESLint configuration - ON, Run eslint --fix on save - ON.
     }
   ]
 
-  Документация Swagger находиться по пути "/api".
+Документация Swagger находиться по пути "/api".
 
 Jest - тестовый фреймворк для JavaScript, который поддерживает тестирование кода. Используется для написания и
 выполнения юнит-тестов, тестов интеграции и моков.
@@ -152,16 +153,6 @@ Authorization: Basic <base64-encoded-credentials>
 2. Чтобы получить строку для Basic авторизации, нужно соединить логин и пароль через двоеточие, а затем закодировать
 результат в base64.
 3. Сервер извлекает данные, декодирует их и проверяет логин и пароль. Если они верны, то сервер разрешает доступ.
-
-Структура приложения:
-1. "/src/auth/" - код, связанный с аутентификацией и авторизацией.
-2. "/src/core/" - общий код для всего приложения.
-3. "/src/db/" - моковая БД.
-4. "/src/drivers/" - код, связанный с водителями.
-5. "/src/rides/" - код, связанный с поездками.
-6. "/src/testing/" - код, связанные с тестированием приложения.
-7. "/__tests__/e2e/" - тесты.
-8. "/__tests__/utils/" - код, связанный с тестами.
 
 Структура приложения:
 0. Файл "index.ts" - точка входа приложения.
